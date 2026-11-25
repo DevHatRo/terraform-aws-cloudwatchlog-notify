@@ -30,7 +30,8 @@ jobs:
         python-version: [3.13]
     services:
       localstack:
-        image: localstack/localstack:latest
+        # 4.14.0 is the last release that starts without LOCALSTACK_AUTH_TOKEN
+        image: localstack/localstack:4.14.0
         ports:
           - 4566:4566
         env:
