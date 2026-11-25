@@ -1,4 +1,6 @@
 version: 2
+
+# Updates are grouped: one PR per ecosystem for minor+patch, one for majors.
 updates:
   # Python dependencies in the functions directory
   - package-ecosystem: "pip"
@@ -6,6 +8,14 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
+    groups:
+      pip-minor-patch:
+        update-types: ["minor", "patch"]
+      pip-major:
+        update-types: ["major"]
+    commit-message:
+      prefix: "deps"
+      include: "scope"
 
   # GitHub Actions
   - package-ecosystem: "github-actions"
@@ -13,10 +23,28 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
+    groups:
+      actions-minor-patch:
+        update-types: ["minor", "patch"]
+      actions-major:
+        update-types: ["major"]
+    commit-message:
+      prefix: "ci"
+      include: "scope"
 
-  # Terraform modules and providers
+  # Terraform modules and providers (module root and examples)
   - package-ecosystem: "terraform"
-    directory: "/"
+    directories:
+      - "/"
+      - "/examples/complete"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
     open-pull-requests-limit: 5
+    groups:
+      terraform-minor-patch:
+        update-types: ["minor", "patch"]
+      terraform-major:
+        update-types: ["major"]
+    commit-message:
+      prefix: "deps"
+      include: "scope"
