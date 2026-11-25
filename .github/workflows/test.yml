@@ -30,7 +30,8 @@ jobs:
         python-version: [3.13]
     services:
       localstack:
-        image: localstack/localstack:latest
+        # 4.14.0 is the last release that starts without LOCALSTACK_AUTH_TOKEN
+        image: localstack/localstack:4.14.0
         ports:
           - 4566:4566
         env:
@@ -44,10 +45,10 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -62,7 +63,7 @@ jobs:
           pytest test_lambda_function.py -v --cov=lambda_function --cov-report=xml
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage.xml

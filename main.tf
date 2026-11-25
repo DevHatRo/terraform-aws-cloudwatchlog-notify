@@ -4,7 +4,7 @@
 
 module "lambda_function" {
   source  = "terraform-aws-modules/lambda/aws"
-  version = "7.21.0"
+  version = "8.13.3"
 
   create         = var.create_lambda_function && var.enabled
   function_name  = var.function_name
@@ -45,8 +45,8 @@ module "lambda_function" {
   allowed_triggers = merge(
     {
       CloudWatchLogs = {
-        principal  = "logs.${data.aws_region.current.name}.amazonaws.com"
-        source_arn = "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:*"
+        principal  = "logs.${data.aws_region.current.region}.amazonaws.com"
+        source_arn = "arn:aws:logs:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:log-group:*"
       }
     },
     var.create_cloudwatch_alarm_sns_topic && var.enabled ? {
@@ -66,7 +66,7 @@ module "lambda_function" {
 
 module "sns" {
   source  = "terraform-aws-modules/sns/aws"
-  version = "6.1.3"
+  version = "7.2.0"
 
   create       = var.create_sns_topic && var.enabled
   name         = var.sns_topic_name
@@ -88,7 +88,7 @@ module "sns" {
 
 module "cloudwatch_alarm_sns" {
   source  = "terraform-aws-modules/sns/aws"
-  version = "6.1.3"
+  version = "7.2.0"
 
   create       = var.create_cloudwatch_alarm_sns_topic && var.enabled
   name         = var.cloudwatch_alarm_sns_topic_name

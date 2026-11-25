@@ -1,10 +1,10 @@
 terraform {
-  required_version = ">= 1.0"
+  required_version = ">= 1.5.7"
 
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 4.9"
+      version = ">= 6.67"
     }
   }
 }
@@ -66,12 +66,12 @@ module "cloudwatch_logs_notifier" {
 # Example Lambda function that will be monitored
 module "lambda_function" {
   source  = "terraform-aws-modules/lambda/aws"
-  version = "~> 7.0"
+  version = "~> 8.0"
 
   function_name = "example-function"
   description   = "Example Lambda function that will be monitored"
   handler       = "index.handler"
-  runtime       = "nodejs18.x"
+  runtime       = "nodejs22.x"
 
   source_path = "${path.module}/src/example-function"
 
