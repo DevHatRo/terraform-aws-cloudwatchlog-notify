@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.2](https://github.com/DevHatRo/terraform-aws-cloudwatchlog-notify/compare/v2.0.1...v2.0.2) (2026-11-27)
+
+
+### Dependencies
+
+* **deps:** update boto3 requirement in /functions ([#23](https://github.com/DevHatRo/terraform-aws-cloudwatchlog-notify/issues/23)) ([f0bff75](https://github.com/DevHatRo/terraform-aws-cloudwatchlog-notify/commit/f0bff75cd2519233482b41d09e1a730c2936630f))
+* **deps:** update botocore requirement in /functions ([#24](https://github.com/DevHatRo/terraform-aws-cloudwatchlog-notify/issues/24)) ([8e60c25](https://github.com/DevHatRo/terraform-aws-cloudwatchlog-notify/commit/8e60c25401a3395ebeae3ead7f485a28ea20da0d))
+
 ## [2.0.1](https://github.com/DevHatRo/terraform-aws-cloudwatchlog-notify/compare/v2.0.0...v2.0.1) (2026-11-25)
 
 
